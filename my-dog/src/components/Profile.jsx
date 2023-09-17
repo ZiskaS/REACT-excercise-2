@@ -1,11 +1,12 @@
 import React from 'react';
 
-function Profile({ userName, bio, avatar }) {
+
+function Profile({ avatar, userName, bio }) {
   return (
     <div className="profile">
       <div className="profile-info">
         <div className="avatar">
-          <img src={avatar} alt="avatar" />
+        <img src={avatar} alt="avatar" />
         </div>
         <p>
           <strong>@</strong> {userName}
@@ -19,4 +20,3 @@ function Profile({ userName, bio, avatar }) {
 }
 
 export default Profile;
-
