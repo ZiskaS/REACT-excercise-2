@@ -4,8 +4,8 @@ import './App.css';
 import NavBar from './components/NavBar';
 import SearchBar from './components/SearchBar';
 import PostList from './components/PostList';
-import React from 'react';
-
+import React, { useState } from 'react';
+import Profile from './components/Profile';
 
 function PhoneFrame({ children }) {
   return (
@@ -18,12 +18,25 @@ function PhoneFrame({ children }) {
 }
 
 function App() {
+  const [currentView, setCurrentView] = useState('postList');
+
+  const handleLogoClick = () => {
+    setCurrentView('postList');
+  };
+
+  const handleProfileClick = () => {
+    setCurrentView('profile');
+  };
+
   return (
     <PhoneFrame>
     <div className="container">
-      <NavBar />
+    <NavBar
+          onLogoClick={handleLogoClick}
+          onProfileClick={handleProfileClick}
+        />
       <SearchBar />
-      <PostList/>
+      {currentView === 'postList' ? <PostList /> : <Profile />}
     </div>
     </PhoneFrame>
   );
