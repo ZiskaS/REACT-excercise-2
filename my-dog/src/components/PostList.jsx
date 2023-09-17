@@ -6,28 +6,27 @@ function PostList({ searchValue }) {
   const [filteredPosts, setFilteredPosts] = useState([]);
 
   useEffect(() => {
-    // Define the 'posts' array inside the useEffect callback
     const posts = [
       {
         author: 'Elisa',
-        date: new Date(),
-        description: 'I love my dog - so cute!',
+        createdAt: new Date(),
+        text: 'I love my dog - so cute!',
         image: 'dog-1.jpg',
         comments: 22,
         likes: 99,
       },
       {
         author: 'Lucia',
-        date: new Date(),
-        description: 'She is so sweet!',
+        createdAt: new Date(),
+        text: 'She is so sweet!',
         image: 'dog-2.jpg',
         comments: 5,
         likes: 10,
       },
       {
         author: 'Ana',
-        date: new Date(),
-        description: 'I adore my furry friend!',
+        createdAt: new Date(),
+        text: 'I adore my furry friend!',
         image: 'dog-3.jpg',
         comments: 15,
         likes: 233,
@@ -38,10 +37,10 @@ function PostList({ searchValue }) {
       const lowercasedQuery = query.toLowerCase();
       return posts.filter((post) => {
         const lowercasedAuthor = post.author.toLowerCase();
-        const lowercasedDescription = post.description.toLowerCase();
+        const lowercasedText = post.text.toLowerCase();
         return (
           lowercasedAuthor.includes(lowercasedQuery) ||
-          lowercasedDescription.includes(lowercasedQuery)
+          lowercasedText.includes(lowercasedQuery)
         );
       });
     };
@@ -55,6 +54,15 @@ function PostList({ searchValue }) {
     return () => clearTimeout(timer);
   }, [searchValue]);
 
+  const handleLikeClick = (postIndex) => {
+    // Create a copy of the filteredPosts array
+    const updatedPosts = [...filteredPosts];
+    // Increment the like count for the specific post
+    updatedPosts[postIndex].likes += 1;
+    // Update the state with the new array
+    setFilteredPosts(updatedPosts);
+  };
+
   return (
     <div className="container">
       {isLoading ? (
@@ -64,11 +72,12 @@ function PostList({ searchValue }) {
           <Post
             key={index}
             author={post.author}
-            date={post.date}
-            description={post.description}
+            createdAt={post.createdAt}
+            text={post.text}
             image={post.image}
             comments={post.comments}
             likes={post.likes}
+            onLikeClick={() => handleLikeClick(index)} // Pass the function to the Post component
           />
         ))
       )}
@@ -77,4 +86,3 @@ function PostList({ searchValue }) {
 }
 
 export default PostList;
-

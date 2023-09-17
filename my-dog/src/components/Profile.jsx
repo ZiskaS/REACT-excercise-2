@@ -1,18 +1,17 @@
 import React from 'react';
 
-function Profile({ userName, description, profileImage }) {
+function Profile({ userName, bio, avatar }) {
   return (
     <div className="profile">
-     
       <div className="profile-info">
-        <div className="profile-image">
-          <img src={profileImage} alt="Profile" />
+        <div className="avatar">
+          <img src={avatar} alt="avatar" />
         </div>
         <p>
           <strong>@</strong> {userName}
         </p>
         <p>
-          <strong>Description</strong> {description}
+          <strong>Bio</strong> {bio}
         </p>
       </div>
     </div>
