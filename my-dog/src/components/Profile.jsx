@@ -9,10 +9,10 @@ function Profile({ userName, description, profileImage }) {
           <img src={profileImage} alt="Profile" />
         </div>
         <p>
-          <strong>User Name:</strong> {userName}
+          <strong>@</strong> {userName}
         </p>
         <p>
-          <strong>Description:</strong> {description}
+          <strong>Description</strong> {description}
         </p>
       </div>
     </div>
